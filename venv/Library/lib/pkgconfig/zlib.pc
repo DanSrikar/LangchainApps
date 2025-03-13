@@ -1,0 +1,13 @@
+prefix=F:/Langchain/1-LangChain/venv/Library
+exec_prefix=F:/Langchain/1-LangChain/venv/Library
+libdir=F:/Langchain/1-LangChain/venv/Library/lib
+sharedlibdir=F:/Langchain/1-LangChain/venv/Library/lib
+includedir=F:/Langchain/1-LangChain/venv/Library/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
