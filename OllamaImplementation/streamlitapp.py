@@ -4,8 +4,10 @@ import os
 
 from dotenv import load_dotenv
 from langchain_community.llms import Ollama
+from langchain.chains import LLMChain
 from langchain_ollama import OllamaLLM 
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import streamlit as st 
 from langchain.callbacks.manager import CallbackManager
@@ -32,12 +34,18 @@ callback_manager = CallbackManager([tracer])
 
 
 # Prompt Template
-prompt=ChatPromptTemplate.from_messages(
-    [
-        ("system","You are a helpful assistant.Please respond to the queries"),
-        ("user","Question:{question}")
-    ]
+#prompt=ChatPromptTemplate.from_messages(
+    #[
+        #("system","You are a helpful assistant.Please respond to the queries"),
+        #("user","Question:{question}")
+    #]
 
+#)
+
+# Define a simple prompt
+prompt_template = PromptTemplate(
+    input_variables=["question"],
+    template="Answer the following question: {question}"
 )
 
 #streamlit framework
@@ -47,8 +55,10 @@ input_text=st.text_input("What question do you have in your mind?")
 
 #Ollama Gemma2b model
 llm=OllamaLLM(model='gemma:2b',callback_manager=callback_manager)
-output_parser=StrOutputParser()
-chain=prompt|llm|output_parser
+
+chain = LLMChain(llm=llm, prompt=prompt_template)
+#output_parser=StrOutputParser()
+#chain=prompt|llm|output_parser
 
 
 if input_text:
