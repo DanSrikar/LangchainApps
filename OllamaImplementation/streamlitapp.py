@@ -16,9 +16,9 @@ load_dotenv()
 
 
 # Access secrets using st.secrets
-LANGCHAIN_API_KEY = st.secrets.get("LANGCHAIN_API_KEY")
-LANGCHAIN_TRACKING_V2 = st.secrets.get("LANGCHAIN_TRACKING_V2")
-LANGCHAIN_PROJECT = st.secrets.get("LANGCHAIN_PROJECT")
+LANGCHAIN_API_KEY = st.secrets["LANGCHAIN_API_KEY"]
+LANGCHAIN_TRACKING_V2 = st.secrets["LANGCHAIN_TRACKING_V2"]
+LANGCHAIN_PROJECT = st.secrets["LANGCHAIN_PROJECT"]
 
 #Langsmith Tracking
 os.environ["LANGCHAIN_API_KEY"]=LANGCHAIN_API_KEY
