@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import streamlit as st 
@@ -29,13 +30,15 @@ st.title("Langchain Demo with Gemma Model")
 input_text=st.text_input("What question do you have in your mind?")
 
 #Ollama Gemma2b model
-llm=Ollama(model='gemma:2b')
+llm=OllamaLLM(model='gemma:2b')
 output_parser=StrOutputParser()
 chain=prompt|llm|output_parser
 
 
 if input_text:
     st.write(chain.invoke({"question":input_text}))
+
+
 
 
 
