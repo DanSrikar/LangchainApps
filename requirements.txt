@@ -7,3 +7,5 @@ langchain_community
 faiss-cpu
 streamlit
 langchain-ollama 
+langsmith
+ollama
